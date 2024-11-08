@@ -1,16 +1,16 @@
 # ekart
 
-A new Flutter project.
+A fully functional eCommerce Flutter application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a Flutter-based eCommerce app that allows users to browse products, add them to the cart, manage the cart, and make purchases.
 
-A few resources to get you started if this is your first Flutter project:
+## Features
+ - User Authentication: Secure login and signup.
+ - Product Listing: View products with details like name, price, and description.
+ - Cart Management: Add and remove products from the cart, update quantities, and view total price.
+ - Order Placement: Place orders and checkout.
+ - Payment Gateway Integration: Supports Razorpay/Stripe for payments (optional).
+ - State Management: Uses Bloc to manage state transitions.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
