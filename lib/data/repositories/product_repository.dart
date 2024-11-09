@@ -18,7 +18,7 @@ class ProductRepository {
       'Authorization':'Bearer $token'
       
     },);
-    print(response.body);
+    // print(response.body);
 
     if(response.statusCode==200){
       return ProductResponse.fromJson(jsonDecode(response.body));

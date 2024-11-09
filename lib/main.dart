@@ -1,7 +1,9 @@
 import 'package:ekart/data/repositories/cart_repository.dart';
+import 'package:ekart/data/repositories/order_repository.dart';
 import 'package:ekart/data/repositories/product_repository.dart';
 import 'package:ekart/data/repositories/user_repository.dart';
 import 'package:ekart/logic/bloc/cart/cart_bloc.dart';
+import 'package:ekart/logic/bloc/order/order_bloc.dart';
 import 'package:ekart/logic/bloc/product/product_bloc.dart';
 import 'package:ekart/logic/bloc/user/user_bloc.dart';
 import 'package:ekart/presentation/screens/Users/cart_screen.dart';
@@ -28,6 +30,7 @@ class MyApp extends StatelessWidget {
       BlocProvider<UserBloc>(create:(context) => UserBloc(userRepository: UserRepository())),
       BlocProvider<ProductBloc>(create:(context) => ProductBloc(productRepository: ProductRepository())),
       BlocProvider<CartBloc>(create:(context) => CartBloc(cartRepository: CartRepository())),
+      BlocProvider<OrderBloc>(create:(context) => OrderBloc(orderRepository: OrderRepository())),
       ],
       child: MaterialApp(
       
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const LoginPage(),
           '/signup': (context) => const SignUp(),
-          '/cart':(context)=> const CartScreen(),
+          // '/cart':(context)=> const CartScreen(),
           // '/productDetails':(context)=> const ProductScreen()
           // '/signup2':(context)=> SignUpTwo(email: "email", password: "password", confirmPassword: "confirmPassword")
         },

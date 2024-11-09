@@ -15,7 +15,7 @@ class CartRepository {
       
     },);
 
-    print(response.body);
+    // print(response.body);
     if(response.statusCode==200){
       return CartResponse.fromJson(jsonDecode(response.body));
     }else {
@@ -36,7 +36,7 @@ class CartRepository {
       
     },
     body:jsonEncode(data));
-    print(response.body);
+    // print(response.body);
 
     if(response.statusCode==200){
       return CartResponse.fromJson(jsonDecode(response.body));
@@ -60,7 +60,7 @@ class CartRepository {
     body:jsonEncode(data)
     );
 
-     print(response.body);
+    //  print(response.body);
 
      if(response.statusCode==200){
       return CartResponse.fromJson(jsonDecode(response.body));

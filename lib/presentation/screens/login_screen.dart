@@ -7,6 +7,7 @@ import 'package:ekart/logic/bloc/user/user_state.dart';
 import 'package:ekart/presentation/screens/Admin/home_screen.dart';
 import 'package:ekart/presentation/screens/Seller/home_screen.dart';
 import 'package:ekart/presentation/screens/Users/home_screen.dart';
+import 'package:ekart/presentation/screens/Users/main_screen.dart';
 import 'package:ekart/presentation/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 // Navigate based on rolea
                 if (user.roles.contains("user")) {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(builder: (context) => MainScreen()),
                   );
                 } else if (user.roles.contains("Seller")) {
                   Navigator.of(context).pushReplacement(

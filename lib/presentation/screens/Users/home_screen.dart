@@ -43,91 +43,93 @@ class _HomePageState extends State<HomePage> {
  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Padding(
-      padding: const EdgeInsets.only(top:40.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-      
-          Padding(
-            padding: const EdgeInsets.only(top:10),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left:15.0),
-                  child: Icon(menu),
-                ),
-                Spacer(),
-                GestureDetector(
-                  onTap: (){
-                    Navigator.pushNamed(context, '/cart');
-                  },
-                  child: Icon(shopping_cart)),
-                Padding(
-                  padding: const EdgeInsets.only(left:15.0,right: 15),
-                  child: Icon(person),
-                )
-      
-              ],
-            ),
-          ),
-        Padding(
-          padding: const EdgeInsets.only(top:12.0,left: 14),
-          child: Text("Discover Products",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w600),),
-        ),
-
-        BlocBuilder<ProductBloc,ProductState>(builder: (context,state){
-          if(state is ProductLoading){
-            return const Center(child: CircularProgressIndicator());
-          }else if(state is ProductLoaded){
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 500,
-                height: 500,
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 8,
-                    crossAxisCount: 2,mainAxisSpacing: 8),
-                  itemCount: state.product.message.length,
-                  itemBuilder: (context,index){
-                    final product = state.product.message[index];
-                  
-                    return GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  ProductScreen(productName:product.productName, productDetails: product.productDetails, productId: product.id, productPrice: product.productPrice, productImage: product.productImage,
-                        reviews: product.reviews,)));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 173, 211, 241),
-                          borderRadius: BorderRadius.circular(12)
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(product.productName),
-                            Text("Rs ${product.productPrice}")
-                        ],),
-                      ),
-                    );
-                
-                }
-                ),
+    return SafeArea(
+      child: Scaffold(body: Padding(
+        padding: const EdgeInsets.only(top:10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+        
+            Padding(
+              padding: const EdgeInsets.only(top:10),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left:15.0),
+                    child: Icon(menu),
+                  ),
+                  Spacer(),
+                  // GestureDetector(
+                  //   onTap: (){
+                  //     Navigator.pushNamed(context, '/cart');
+                  //   },
+                  //   child: Icon(shopping_cart)),
+                  Padding(
+                    padding: const EdgeInsets.only(left:15.0,right: 15),
+                    child: Icon(person),
+                  )
+        
+                ],
               ),
-            );
-          }else if (state is ProductError){
-            return Text('Error:${state.message}');
+            ),
+          Padding(
+            padding: const EdgeInsets.only(top:12.0,left: 14),
+            child: Text("Discover Products",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w600),),
+          ),
+      
+          BlocBuilder<ProductBloc,ProductState>(builder: (context,state){
+            if(state is ProductLoading){
+              return const Center(child: CircularProgressIndicator());
+            }else if(state is ProductLoaded){
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 500,
+                  height: 500,
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 8,
+                      crossAxisCount: 2,mainAxisSpacing: 8),
+                    itemCount: state.product.message.length,
+                    itemBuilder: (context,index){
+                      final product = state.product.message[index];
+                    
+                      return GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>  ProductScreen(productName:product.productName, productDetails: product.productDetails, productId: product.id, productPrice: product.productPrice, productImage: product.productImage,
+                          reviews: product.reviews,)));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 173, 211, 241),
+                            borderRadius: BorderRadius.circular(12)
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(product.productName),
+                              Text("Rs ${product.productPrice}")
+                          ],),
+                        ),
+                      );
+                  
+                  }
+                  ),
+                ),
+              );
+            }else if (state is ProductError){
+              return Text('Error:${state.message}');
+            }
+            return  Text("No product");
           }
-          return  Text("No product");
-        }
-        
-        )
-        
-        
-      ],),
-    ),);
+          
+          )
+          
+          
+        ],),
+      ),),
+    );
   }
 }
